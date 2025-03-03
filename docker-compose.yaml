@@ -1,3 +1,4 @@
+
 services:
   flask:
     build: ./Flask
@@ -49,6 +50,20 @@ services:
     depends_on:
       - mongo
     restart: always
+    networks:
+      - my-network
+
+  loadgenservice:
+    build: ./LoadGenService
+    ports:
+      - "5001:5001"
+    networks:
+      - my-network
+
+  loggingservice:
+    build: ./LoggingService
+    ports:
+      - "5002:5002"
     networks:
       - my-network
 
